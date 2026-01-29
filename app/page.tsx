@@ -1,13 +1,7 @@
 import Link from "next/link";
-
 import Image from "next/image";
-
 import { Button } from "@/components/ui/button";
-
-import { Hero } from "@/components/Hero";
-
 import { CollectionCard } from "@/components/ui/CollectionCard";
-
 import { ArrowRight, Star } from "lucide-react";
 
 export default function Home() {
@@ -51,7 +45,7 @@ export default function Home() {
 
           {/* Hero Images Grid */}
 
-          <div className="relative h-[600px] w-full md:block">
+          <div className="relative h-150 w-full md:block">
             {/* Main large image */}
 
             <div className="absolute right-0 top-0 w-[80%] h-[90%] rounded-3xl overflow-hidden shadow-2xl">
@@ -198,7 +192,7 @@ export default function Home() {
 
             {/* Large Feature Card */}
 
-            <div className="relative rounded-3xl overflow-hidden min-h-[400px]">
+            <div className="relative rounded-3xl overflow-hidden min-h-100">
               <Image
                 src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=1000"
                 alt="Model"

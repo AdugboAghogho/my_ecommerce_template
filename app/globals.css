@@ -1,12 +1,27 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
-.shadow-inner-soft {
-    box-shadow: inset 30px 20px 40px 20px rgba(0, 0, 0, 0.05);
+.container {
+  width: 100%;
+  @media (width >= 40rem /* 640px */) {
+    max-width: 40rem /* 640px */;
+  }
+  @media (width >= 48rem /* 768px */) {
+    max-width: 48rem /* 768px */;
+  }
+  @media (width >= 64rem /* 1024px */) {
+    max-width: 64rem /* 1024px */;
+  }
+  @media (width >= 80rem /* 1280px */) {
+    max-width: 80rem /* 1280px */;
+  }
+  @media (width >= 96rem /* 1536px */) {
+    max-width: 96rem /* 1536px */;
+  }
 }
-
-/* ... existing code ... */
+.shadow-inner-soft {
+  box-shadow: inset 30px 20px 40px 20px rgba(0, 0, 0, 0.05);
+}
 
 @layer utilities {
   /* Marquee Animation */
@@ -18,14 +33,22 @@
   }
 
   @keyframes marquee-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
   }
   @keyframes marquee-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
-  
+
   /* Hide scrollbar for clean carousel */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
