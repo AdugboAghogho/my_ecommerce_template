@@ -53,7 +53,7 @@ const FEATURED_PRODUCTS = [
 
 export function SectionFeatured() {
   return (
-    <section className="py-24 pt-[50px] bg-white overflow-hidden shadow-xl">
+    <section className="py-24 pt-12.5 bg-white overflow-hidden shadow-xl">
       <div className="text-center mb-16">
         <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
           FEATURED COLLECTION
