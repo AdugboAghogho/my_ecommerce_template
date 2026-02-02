@@ -52,14 +52,14 @@ export default function Home() {
 
                   <h4 className="font-bold text-lg">Nike Air Max Revival</h4>
 
-                  <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                  <p className="text-sm text-gray-500 mt-1 mb-3 line-clamp-2">
                     The classic silhouette returns with sustainable materials
                     and improved comfort for all-day wear.
                   </p>
 
                   <Link
                     href="/shop/product/nike-air"
-                    className="rounded-full px-8 h-20 text-white bg-black shadow-xl shadow-gray-400  hover:bg-gray-800 cursor-pointer"
+                    className="rounded-full mt-4 px-6 p-2 h-20 text-white bg-black shadow-xl shadow-gray-400  hover:bg-gray-800 cursor-pointer"
                   >
                     Shop Now
                   </Link>
@@ -67,7 +67,7 @@ export default function Home() {
               </div>
 
               <div className="flex gap-6 items-start bg-white p-4 rounded-xl shadow-sm">
-                <div className="w-24 h-24 relative rounded-lg overflow-hidden shrink-0">
+                <div className="w-24 h-28 relative rounded-lg overflow-hidden shrink-0">
                   <Image
                     src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=1000"
                     alt="Shirt"
@@ -83,14 +83,14 @@ export default function Home() {
 
                   <h4 className="font-bold text-lg">Oversized Heavy Tee</h4>
 
-                  <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+                  <p className="text-sm text-gray-500 mt-1 mb-3 line-clamp-2">
                     Designed for the modern streetwear aesthetic. 100% heavy
                     cotton.
                   </p>
 
                   <Link
                     href="/shop/product/tee"
-                    className="text-sm font-semibold mt-2 block underline"
+                    className="rounded-full mt-4 px-6 p-2 h-20 text-white bg-black shadow-xl shadow-gray-400  hover:bg-gray-800 cursor-pointer"
                   >
                     Shop Now
                   </Link>

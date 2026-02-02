@@ -54,14 +54,14 @@ export function SectionBenefits() {
   return (
     <section className="py-16 md:py-24 bg-black overflow-hidden">
       <div className="container mx-auto px-4 mb-10 md:mb-16 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-white">
+        <h2 className="text-3xl md:text-5xl font-bold text-white">
           Why Choose Us
         </h2>
       </div>
 
       {/* Row 1: Moving Left */}
       {/* UPDATED: Added [animation-duration:20s] for faster speed on mobile, slower on desktop */}
-      <div className="flex w-[200%] animate-marquee-left hover:[animation-play-state:paused] [animation-duration:20s] md:[animation-duration:20s]">
+      <div className="flex w-[200%] animate-marquee-left hover:[animation-play-state:paused] [animation-duration:40s] md:[animation-duration:20s]">
         {[...BENEFITS_ROW_1, ...BENEFITS_ROW_1, ...BENEFITS_ROW_1].map(
           (item, i) => (
             <BenefitCard key={i} {...item} />
@@ -72,7 +72,7 @@ export function SectionBenefits() {
       <div className="h-6 md:h-8" />
 
       {/* Row 2: Moving Right */}
-      <div className="flex w-[200%] animate-marquee-right hover:[animation-play-state:paused] [animation-duration:20s] md:[animation-duration:40s]">
+      <div className="flex w-[200%] animate-marquee-right hover:[animation-play-state:paused] [animation-duration:20s] md:[animation-duration:10s]">
         {[...BENEFITS_ROW_2, ...BENEFITS_ROW_2, ...BENEFITS_ROW_2].map(
           (item, i) => (
             <BenefitCard key={i} {...item} />

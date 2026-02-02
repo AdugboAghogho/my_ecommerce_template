@@ -6,11 +6,11 @@ import ownyourstyle from "../../public/Edited/edite (1).jpg";
 
 export function SectionOwnYourStyle() {
   return (
-    <section className="container mx-auto px-4 py-24 border-b">
+    <section className="container mx-auto pt-1.75 px-4 py-24 border-b">
       <div className="bg-gray-50 rounded-[3rem] overflow-hidden shadow-xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-150 items-center">
           {/* Text Content */}
-          <div className="p-12 md:p-20 space-y-8">
+          <div className="p-8 md:p-20 space-y-8">
             <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
               Own Your <br />
               Style
@@ -22,7 +22,7 @@ export function SectionOwnYourStyle() {
             <Link href="/shop">
               <Button
                 size="lg"
-                className="rounded-full px-8 h-14 text-base bg-black text-white hover:bg-gray-800 cursor-pointer "
+                className="rounded-full px-8 h-14 text-base bg-black text-white shadow-xl hover:bg-gray-800 cursor-pointer "
               >
                 Shop Now
               </Button>

@@ -23,13 +23,13 @@ export function Navbar() {
             href="/shop"
             className="hover:text-black text-gray-600 transition"
           >
-            Men
+            Shop
           </Link>
           <Link
-            href="/shop"
+            href="/product"
             className="hover:text-black text-gray-600 transition"
           >
-            Women
+            Product
           </Link>
           <Link
             href="/shop"

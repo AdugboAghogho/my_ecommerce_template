@@ -8,8 +8,8 @@ const SectionTopCollection = () => {
   return (
     <section className="container mx-auto px-4">
       <div className="flex justify-between items-end mb-10">
-        <div>
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter leading-none">
+        <div className="p-8">
+          <h2 className="text-4xl md:text-7xl font-bold tracking-tighter leading-none">
             Curated Collections
           </h2>
 
@@ -49,7 +49,7 @@ const SectionTopCollection = () => {
         />
       </div>
 
-      <div className="border-b mt-[80px]"></div>
+      <div className="border-b mt-20"></div>
     </section>
   );
 };

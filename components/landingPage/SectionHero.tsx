@@ -1,14 +1,14 @@
 import React from "react";
-import { Link } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 const SectionHero = () => {
   return (
-    <section className="container mx-auto px-4 mt-10  rounded-[3rem]">
+    <section className="container mx-auto px-4 mt-7 rounded-[3rem]">
       <div className="bg-white rounded-[3rem]  md:p-12 shadow-xl border border-gray-100">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
+          <div className="p-8 md:p-10 space-y-6">
             <h1 className="text-5xl md:text-7xl font-bold leading-[1.1] tracking-tight text-gray-900">
               Discover Your <br />
               <span className="text-gray-500">Signature Style.</span>
@@ -21,22 +21,24 @@ const SectionHero = () => {
             </p>
 
             <div className="flex gap-4 pt-4">
-              {/* <Link href="/shop"> */}
-              <Button
-                size="lg"
-                className="rounded-full px-8 h-12 text-white bg-black shadow-xl shadow-gray-400  hover:bg-gray-800 cursor-pointer"
-              >
-                Shop Collection
-              </Button>
-              {/* </Link> */}
+              <Link href="/shop">
+                <Button
+                  size="lg"
+                  className="rounded-full px-8 h-14 text-base bg-black text-white shadow-xl hover:bg-gray-800 cursor-pointer "
+                >
+                  Shop Collection
+                </Button>
+              </Link>
 
-              <Button
-                variant="outline"
-                size="lg"
-                className="rounded-full h-10 px-8 shadow-lg shadow-gray-400  hover:bg-gray-800 cursor-pointer"
-              >
-                View Lookbook
-              </Button>
+              <Link href="/shop">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="rounded-full px-4 h-14 text-base bg-white text-black shadow-xl md:px-8 cursor-pointer "
+                >
+                  View Lookbook
+                </Button>
+              </Link>
             </div>
           </div>
 
