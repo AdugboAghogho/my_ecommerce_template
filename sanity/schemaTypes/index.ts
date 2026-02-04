@@ -1,5 +1,7 @@
 import category from './category'
 import product from './product'
 import order from './order'
+import ordersDetails from './ordersDetails'
+import user from './user'
 
-export const schemaTypes = [category, product, order] 
+export const schemaTypes = [category, product, order, ordersDetails, user]
