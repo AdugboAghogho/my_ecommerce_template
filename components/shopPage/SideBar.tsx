@@ -33,7 +33,7 @@ const SideBar = () => {
             active
             className="shadow-xl"
           />
-          <SidebarLink icon={ShoppingCart} label="Cart" className="shadow-xl" />
+          <SidebarLink href='/cart' icon={ShoppingCart} label="Cart" className="shadow-xl" />
           <SidebarLink icon={Filter} label="Categories" className="shadow-xl" />
           <SidebarLink icon={User} label="Profile" className="shadow-xl" />
         </nav>

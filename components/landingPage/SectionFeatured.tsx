@@ -89,9 +89,9 @@ export function SectionFeatured() {
             <SwiperSlide key={product.id} className="max-w-75 md:max-w-87.5">
               {({ isActive }) => (
                 <div
-                  className={`relative aspect-3/5 rounded-4xl overflow-hidden transition-all duration-500 shadow-xl ${
+                  className={`relative aspect-3/5 rounded-3xl overflow-hidden transition-all duration-500 shadow-xl ${
                     isActive
-                      ? "scale-100 opacity-100 ring-4 ring-black/5"
+                      ? "scale-80 opacity-100 ring-4 ring-black/5"
                       : "scale-70  rounded-4xl"
                   }`}
                 >
@@ -108,9 +108,9 @@ export function SectionFeatured() {
 
                   {/* Top Left Tag */}
                   <div className="absolute top-6 left-6">
-                    <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
+                    {/* <span className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">
                       40%
-                    </span>
+                    </span> */}
                   </div>
 
                   {/* Vertical Text (Right Side) */}

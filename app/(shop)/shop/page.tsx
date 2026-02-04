@@ -50,18 +50,22 @@ export default function ShopPage() {
 
             {/* Search Bar */}
             <div className="flex-1 max-w-md mx-4 md:mx-0 hidden md:block relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search for clothes..."
-                className="w-full bg-white border border-gray-100 rounded-full py-3 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-200 shadow-sm"
-              />
+              <Link href="/search">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search for clothes..."
+                  className="w-full bg-white border border-gray-100 rounded-full py-3 pl-12 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-orange-200 shadow-sm"
+                />
+              </Link>
             </div>
 
             <div className="flex gap-3">
-              <button className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shadow-orange-200 shadow-lg text-white">
-                <ShoppingBag className="w-5 h-5" />
-              </button>
+              <Link href="/cart">
+                <button className="w-10 h-10 rounded-full bg-orange-500 flex items-center justify-center shadow-orange-200 shadow-lg text-white">
+                  <ShoppingBag className="w-5 h-5" />
+                </button>
+              </Link>
             </div>
           </header>
 

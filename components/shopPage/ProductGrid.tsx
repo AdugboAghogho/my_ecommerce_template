@@ -84,11 +84,12 @@ const ProductGrid = () => {
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
         {PRODUCTS.map((product) => (
           <Link
-            href={`/shop/product/${product.id}`}
+            // href={`/shop/product/${product.id}`}
+            href="/product"
             key={product.id}
             className="group"
           >
-            <div className="bg-white p-3 rounded-3xl shadow-xl hover:shadow-xl transition-all duration-300 border border-gray-50 h-full flex flex-col">
+            <div className="bg-white p-3 rounded-2xl shadow-xl hover:shadow-xl transition-all duration-300 border border-gray-50 h-full flex flex-col">
               {/* Image */}
               <div className="relative aspect-3/4 rounded-2xl overflow-hidden mb-3 bg-gray-100">
                 <Image
@@ -109,9 +110,12 @@ const ProductGrid = () => {
                   <span className="text-lg font-bold text-gray-900">
                     ${product.price}
                   </span>
-                  <button className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200 hover:scale-110 transition-transform">
-                    <ShoppingBag className="w-4 h-4" />
-                  </button>
+
+                  <Link href="/cart" className="cursor-pointer">
+                    <button className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200 hover:scale-110 transition-transform">
+                      <ShoppingBag className="w-4 h-4" />
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>

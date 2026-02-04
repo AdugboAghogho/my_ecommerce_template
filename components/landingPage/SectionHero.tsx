@@ -30,7 +30,7 @@ const SectionHero = () => {
                 </Button>
               </Link>
 
-              <Link href="/shop">
+              {/* <Link href="/shop">
                 <Button
                   variant="outline"
                   size="lg"
@@ -38,7 +38,7 @@ const SectionHero = () => {
                 >
                   View Lookbook
                 </Button>
-              </Link>
+              </Link> */}
             </div>
           </div>
 

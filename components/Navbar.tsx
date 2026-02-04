@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Search, ShoppingBag, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MobileNav from "./shopPage/MobileNav";
 
 export function Navbar() {
   return (
@@ -31,20 +32,16 @@ export function Navbar() {
           >
             Product
           </Link>
-          <Link
-            href="/shop"
-            className="hover:text-black text-gray-600 transition"
-          >
-            Accessories
-          </Link>
         </div>
 
         {/* Icons */}
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon">
-            <Search className="w-5 h-5" />
-          </Button>
-          <Link href="/sign-in">
+          <Link href="/search">
+            <Button variant="ghost" size="icon">
+              <Search className="w-5 h-5" />
+            </Button>
+          </Link>
+          <Link href="/profile">
             <Button variant="ghost" size="icon">
               <User className="w-5 h-5" />
             </Button>
@@ -60,6 +57,8 @@ export function Navbar() {
           </Button>
         </div>
       </div>
+
+      <MobileNav />
     </nav>
   );
 }
