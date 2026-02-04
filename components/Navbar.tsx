@@ -58,7 +58,7 @@ export function Navbar() {
         </div>
       </div>
 
-      <MobileNav />
+    
     </nav>
   );
 }
