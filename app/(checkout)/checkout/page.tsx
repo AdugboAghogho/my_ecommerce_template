@@ -1,10 +1,17 @@
 "use client";
 
-import { ArrowLeft, CreditCard, Truck } from "lucide-react";
+import { ArrowLeft, CreditCard, Truck, Trash2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useCartStore } from "@/store/useCartStore"; // Import the store
 
 export default function CheckoutPage() {
+  const { items, getTotalPrice } = useCartStore();
+  const total = getTotalPrice();
+  const shipping = 10.0;
+  const finalTotal = total + shipping;
+
   return (
     <div className="min-h-screen bg-[#FDFBF7] p-4 md:p-8">
       <header className="mb-8 flex items-center gap-4">
@@ -19,7 +26,7 @@ export default function CheckoutPage() {
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Shipping Form */}
         <div className="space-y-6">
-          <section className="bg-white p-6 rounded-4xl shadow-sm">
+          <section className="bg-white p-6 rounded-[2rem] shadow-sm">
             <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
               <Truck className="w-5 h-5 text-orange-500" /> Shipping Address
             </h2>
@@ -47,7 +54,7 @@ export default function CheckoutPage() {
             </div>
           </section>
 
-          <section className="bg-white p-6 rounded-4xl shadow-sm">
+          <section className="bg-white p-6 rounded-[2rem] shadow-sm">
             <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-orange-500" /> Payment
             </h2>
@@ -64,26 +71,56 @@ export default function CheckoutPage() {
         </div>
 
         {/* Review & Pay */}
-        <div className="bg-white p-6 rounded-4xl shadow-sm h-fit">
+        <div className="bg-white p-6 rounded-[2rem] shadow-sm h-fit">
           <h3 className="font-bold text-gray-900 mb-6">Summary</h3>
-          {/* List short items here */}
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-12 h-12 bg-gray-100 rounded-lg" />
-            <div>
-              <p className="text-sm font-bold">Orange Set</p>
-              <p className="text-xs text-gray-500">Qty: 1</p>
-            </div>
-            <p className="ml-auto font-bold">$25.00</p>
+
+          <div className="space-y-4 mb-6 max-h-60 overflow-y-auto pr-2">
+            {items.map((item) => (
+              <div
+                key={item.id + item.size}
+                className="flex items-center gap-4"
+              >
+                <div className="w-12 h-12 bg-gray-100 rounded-lg relative overflow-hidden shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-bold truncate">{item.name}</p>
+                  <p className="text-xs text-gray-500">
+                    Qty: {item.quantity} · {item.size}
+                  </p>
+                </div>
+                <p className="font-bold text-sm">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </p>
+              </div>
+            ))}
           </div>
 
           <div className="h-px bg-gray-100 my-4" />
-          <div className="flex justify-between font-bold text-xl mb-6">
-            <span>Total</span>
-            <span>$269.34</span>
+
+          <div className="space-y-2 mb-4">
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Subtotal</span>
+              <span>${total.toFixed(2)}</span>
+            </div>
+            <div className="flex justify-between text-sm text-gray-500">
+              <span>Shipping</span>
+              <span>${shipping.toFixed(2)}</span>
+            </div>
           </div>
 
-          <Button className="w-full h-14 bg-black text-white hover:bg-gray-800 rounded-2xl shadow-lg">
-            Pay Now
+          <div className="flex justify-between font-bold text-xl mb-6">
+            <span>Total</span>
+            <span>${finalTotal.toFixed(2)}</span>
+          </div>
+
+          <Button className="w-full h-14 bg-black text-white hover:bg-gray-800 rounded-2xl shadow-lg uppercase tracking-widest">
+            Pay ${finalTotal.toFixed(2)}
           </Button>
         </div>
       </div>

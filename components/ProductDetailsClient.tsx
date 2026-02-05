@@ -1,16 +1,39 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { ArrowLeft, Heart, Minus, Plus, Star } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import product from "@/public/Edited/edite (17).jpg";
+import { toast } from "react-hot-toast";
+import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { useCartStore } from "@/store/useCartStore";
+import { singleProduct } from "@/lib/queries";
+import { ArrowLeft, Heart, Minus, Plus, Star } from "lucide-react";
 
-export default function ProductPage() {
+export default function ProductPage({ product }: { product: any }) {
+  const { addItem } = useCartStore();
+  const [showCart, setShowCart] = useState(false);
   const [quantity, setQuantity] = useState(1);
-  const [selectedSize, setSelectedSize] = useState("M");
-  const [selectedColor, setSelectedColor] = useState("orange");
+  const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || "M");
+  const [selectedColor, setSelectedColor] = useState(
+    product.colors?.[0] || "Black",
+  );
+
+  const handleAddToCart = () => {
+    addItem({
+      id: product._id,
+      name: product.name,
+      price: product.price,
+      image: product.imageUrl,
+      quantity: quantity,
+      size: selectedSize,
+      color: selectedColor,
+    });
+    toast.success(`${product.name} Added to Cart.!`);
+  };
+
+  const handleBuyNow = () => {
+    setShowCart(true);
+  };
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] pb-24 md:pb-0">
@@ -34,27 +57,27 @@ export default function ProductPage() {
             {/* Main Image */}
             <div className="relative aspect-3/4 md:aspect-square w-full rounded-[2.5rem] overflow-hidden bg-white shadow-xl shadow-orange-50 mx-auto max-w-md md:max-w-full">
               <Image
-                src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1000"
-                alt="Product"
+                src={product.imageUrl}
+                alt={product.name}
                 fill
                 className="object-cover"
               />
               {/* Floating Thumbnails (Desktop Style Mock) */}
-              <div className="hidden md:flex flex-col gap-3 absolute left-4 top-1/2 -translate-y-1/2">
+              {/* <div className="hidden md:flex flex-col gap-3 absolute left-4 top-1/2 -translate-y-1/2">
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
                     className="w-12 h-12 rounded-xl bg-white p-1 cursor-pointer border-2 border-transparent hover:border-orange-500 overflow-hidden relative"
                   >
                     <Image
-                      src={product}
+                      src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=100"
                       alt="thumb"
                       fill
                       className="object-cover rounded-lg"
                     />
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -63,7 +86,7 @@ export default function ProductPage() {
             {/* Title & Rating */}
             <div className="mb-6">
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-                Shirts and Shorts
+                {product.name}
               </h1>
               <div className="flex items-center gap-2">
                 <Star className="w-4 h-4 text-yellow-400 fill-current" />
@@ -76,7 +99,9 @@ export default function ProductPage() {
             <div className="flex items-center justify-between mb-8">
               <div>
                 <p className="text-gray-500 text-sm mb-1">From:</p>
-                <p className="text-3xl font-black text-gray-900">$25.00</p>
+                <p className="text-3xl font-black text-gray-900">
+                  ${product.price}
+                </p>
               </div>
 
               {/* Counter */}
@@ -103,29 +128,13 @@ export default function ProductPage() {
             <div className="mb-6">
               <p className="font-bold text-gray-900 mb-3">Color</p>
               <div className="flex gap-3">
-                {["orange", "green", "black", "pink"].map((color) => (
+                {product.colors?.map((color: string) => (
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
-                    className={`w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all ${
-                      selectedColor === color
-                        ? "border-orange-500 scale-110"
-                        : "border-transparent"
-                    }`}
-                    style={{
-                      backgroundColor:
-                        color === "orange"
-                          ? "#FF6B00"
-                          : color === "green"
-                            ? "#10B981"
-                            : color === "pink"
-                              ? "#F472B6"
-                              : "#1F2937",
-                    }}
+                    className={`px-4 py-2 rounded-xl font-bold border ${selectedColor === color ? "bg-orange-500 text-white border-orange-500" : "bg-white"}`}
                   >
-                    {selectedColor === color && (
-                      <div className="w-2 h-2 bg-white rounded-full" />
-                    )}
+                    {color}
                   </button>
                 ))}
               </div>
@@ -155,15 +164,14 @@ export default function ProductPage() {
             <div className="mb-8">
               <p className="font-bold text-gray-900 mb-2">Description</p>
               <p className="text-gray-500 text-sm leading-relaxed">
-                Experience effortless elegance and all-day comfort with our
-                breathable 2-piece outfit — lightweight, stylish, versatile, and
-                perfect for any occasion.
+                {product.description}
               </p>
             </div>
 
             {/* Action Buttons (Desktop) */}
             <div className="hidden md:flex gap-4">
               <Button
+                onClick={handleAddToCart}
                 variant="outline"
                 className="flex-1 h-14 rounded-2xl border-2 border-gray-200 text-gray-900 hover:bg-gray-50 hover:text-black"
               >
@@ -180,12 +188,16 @@ export default function ProductPage() {
       {/* --- MOBILE STICKY BOTTOM BAR --- */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-4 px-6 rounded-t-4xl shadow-[0_-10px_40px_rgba(0,0,0,0.1)] z-50 flex gap-4">
         <Button
+          onClick={handleAddToCart}
           variant="outline"
           className="flex-1 h-14 rounded-2xl border-gray-200 text-gray-900"
         >
           Add to Cart
         </Button>
-        <Button className="flex-1 h-14 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-200 border-none">
+        <Button
+          onClick={handleBuyNow}
+          className="flex-1 h-14 rounded-2xl bg-orange-500 hover:bg-orange-600 text-white shadow-lg shadow-orange-200 border-none"
+        >
           Buy Now
         </Button>
       </div>
