@@ -38,3 +38,16 @@
 // };
 
 // export default Success;
+
+import React from "react";
+import Success from "./page";
+
+const Success = () => {
+  return (
+    <div>
+      <h2>Success</h2>
+    </div>
+  );
+};
+
+export default Success;
