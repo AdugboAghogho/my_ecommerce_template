@@ -30,7 +30,7 @@ const ProductGrid = ({
           <Link
             // href={`/shop/product/${product.id}`}
             href={`/product/${product.slug}`}
-            key={product.id}
+            key={product._id}
             className="group"
           >
             <div className="bg-white p-3 rounded-2xl shadow-xl hover:shadow-xl transition-all duration-300 border border-gray-50 h-full flex flex-col">
