@@ -40,7 +40,6 @@
 // export default Success;
 
 import React from "react";
-import Success from "./page";
 
 const Success = () => {
   return (
