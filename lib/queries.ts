@@ -27,7 +27,7 @@ export const singleProduct = groq`*[_type == "product" && slug.current == $slug]
   name,
   price,
   description,
-  "imageUrl": images[0].asset->url,
+  "imageUrl": images[].asset->url,
   "category": category->title,
   sizes,
   colors
@@ -35,5 +35,13 @@ export const singleProduct = groq`*[_type == "product" && slug.current == $slug]
 
 export const allCategories = groq`*[_type == "category"] {
   title,
+  "slug": slug.current
+}`;
+
+export const relatedProducts = groq`*[_type == "product" && category->title == $category && _id != $currentId][0..3] {
+  _id,
+  name,
+  price,
+  "imageUrl": images[0].asset->url,
   "slug": slug.current
 }`;
