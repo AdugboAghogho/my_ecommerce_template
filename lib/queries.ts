@@ -27,6 +27,7 @@ export const singleProduct = groq`*[_type == "product" && slug.current == $slug]
   name,
   price,
   description,
+  "images": images[].asset->url,    
   "imageUrl": images[].asset->url,
   "category": category->title,
   sizes,

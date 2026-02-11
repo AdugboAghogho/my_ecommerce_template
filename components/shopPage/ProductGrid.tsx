@@ -57,7 +57,10 @@ const ProductGrid = ({
 
                   <button
                     className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200 hover:scale-110 transition-transform"
-                    onClick={() => addItem(product)}
+                    onClick={(e) => {
+              e.preventDefault(); // <--- THIS STOPS THE REDIRECT
+              addItem(product);
+            }}
                   >
                     <ShoppingBag className="w-4 h-4" />
                   </button>
