@@ -6,10 +6,9 @@ import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { useState, useEffect } from "react";
 import { useCartStore } from "@/store/useCartStore";
-import { ArrowLeft, Heart, Minus, Plus, Star, ArrowRight, ShoppingBag } from "lucide-react";
+import { ArrowLeft, ShoppingCart, Heart, Minus, Plus, Star, ArrowRight, ShoppingBag } from "lucide-react";
 
-// Helper to calculate discount
-const DISCOUNT_TAG = "25% OFF";
+
 
 export default function ProductPage({
   product,
@@ -23,20 +22,18 @@ export default function ProductPage({
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || "M");
   const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "Black");
 
-  // --- IMAGE GALLERY LOGIC ---
   const images = (product.images && product.images.length > 0) 
     ? product.images 
     : [product.imageUrl];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Auto-rotate images every 3 seconds
   useEffect(() => {
     if (images.length < 2) return; 
-
+    
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, 5000);
 
     return () => clearInterval(timer);
   }, [images.length]);
@@ -77,11 +74,6 @@ export default function ProductPage({
           <div className="space-y-4 px-4 md:px-0">
             {/* Main Image */}
             <div className="relative aspect-square bg-[#F9F9F9] rounded-3xl overflow-hidden">
-               {/* Clean Tag */}
-               <div className="absolute top-4 left-4 z-10 bg-black text-white px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase">
-                {DISCOUNT_TAG}
-              </div>
-              
               <Image
                 src={images[currentImageIndex]}
                 alt={product.name}
@@ -97,7 +89,7 @@ export default function ProductPage({
                 <button
                   key={idx}
                   onClick={() => setCurrentImageIndex(idx)}
-                  className={`relative w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 transition-all duration-300 ${
+                  className={`relative w-20 h-20 rounded-xl overflow-hidden shrink-0 transition-all duration-300 ${
                     currentImageIndex === idx
                       ? "ring-2 ring-black opacity-100"
                       : "opacity-50 hover:opacity-100"
@@ -130,7 +122,7 @@ export default function ProductPage({
               
               <div className="flex items-center gap-4">
                 <p className="text-2xl font-medium text-gray-900">${product.price}</p>
-                <div className="h-4 w-[1px] bg-gray-300"></div>
+                <div className="h-4 w-px bg-gray-300"></div>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 text-orange-400 fill-orange-400" />
                   <span className="font-semibold text-sm">4.8</span>
@@ -237,7 +229,7 @@ export default function ProductPage({
                   href={`/shop/${item.slug}`}
                   className="group block"
                 >
-                  <div className="relative aspect-[3/4] bg-[#F5F5F5] rounded-2xl overflow-hidden mb-3">
+                  <div className="relative aspect-3/4 bg-[#F5F5F5] rounded-2xl overflow-hidden mb-3">
                     {item.imageUrl && (
                       <Image
                         src={item.imageUrl}

@@ -31,6 +31,12 @@ const SectionNewsletter = () => {
               Subscribe
             </Button>
           </div>
+
+          <div className="mt-30 px-4 text-center">
+            <p className="text-gray-400">
+              © 2026 Kels Development. All rights reserved.
+            </p>
+          </div>
         </div>
 
         {/* Abstract Background Decoration */}

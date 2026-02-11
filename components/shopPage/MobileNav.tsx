@@ -1,17 +1,17 @@
-import { Home, ShoppingBag, Heart, User } from "lucide-react";
+import { Home, ShoppingBag, Search, User } from "lucide-react";
 import React from "react";
 
 const MobileNav = () => {
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-gray-100 p-4 pb-6 flex justify-around z-50 rounded-t-4xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
+    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black-300 backdrop-blur-xl border-t border-gray-100 p-4 pb-6 flex justify-around z-50 rounded-t-4xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
       <BottomNavLink icon={Home} label="Home" />
       <BottomNavLink icon={ShoppingBag} label="Shop" active />
-      <BottomNavLink icon={Heart} label="Favorites" />
-      <BottomNavLink icon={User} label="Profile" />
+      <BottomNavLink href="/search" icon={Search} label="Search" />
+      <BottomNavLink href="/profile" icon={User} label="Profile" />
     </div>
   );
 };
-function BottomNavLink({ icon: Icon, label, active }: any) {
+function BottomNavLink({ icon: Icon, label, active, href }: any) {
   return (
     <button
       className={`flex flex-col items-center gap-1 ${

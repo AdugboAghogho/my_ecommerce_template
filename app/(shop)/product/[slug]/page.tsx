@@ -18,7 +18,7 @@ export default async function ProductPage({
 
   return (
     <div>
-      <ProductDetailsClient product={product} relatedProducts={related} />
+      <ProductDetailsClient product={product}  relatedProducts={related} />
     </div>
   );
 }

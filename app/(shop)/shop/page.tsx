@@ -1,6 +1,6 @@
-import { allProducts, allCategories } from "@/lib/queries";
-import { client } from "@/lib/sanity";
 import ShopClient from "./ShopClient";
+import { client } from "@/lib/sanity";
+import { allProducts, allCategories } from "@/lib/queries";
 
 export default async function ShopPage() {
   const products = await client.fetch(allProducts);

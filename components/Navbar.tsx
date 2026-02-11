@@ -1,4 +1,4 @@
- "use client"
+"use client";
 import Link from "next/link";
 import { Search, ShoppingBag, User, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ export function Navbar() {
   const { items } = useCartStore();
 
   return (
-    <nav className="w-full border-b bg-white py-4 sticky top-0 z-50 shadow-xl">
+    <nav className="w-full border-b hidden bg-white py-4 sticky top-0 z-50 shadow-xl">
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="text-2xl font-bold tracking-tighter">

@@ -20,7 +20,7 @@ export default function SearchPage() {
         try {
           // GROQ Query: Matches name OR description
           const products = await client.fetch(
-            `*[_type == "product" && (name match $q + "*" || description match $q + "*")] {
+            `*[_type == "product" && (name match "*" + $q + "*" || description match $q + "*")] {
               _id,
               name,
               price,
@@ -87,9 +87,9 @@ export default function SearchPage() {
               <Link
                 href={`/shop/product/${item.slug}`}
                 key={item._id}
-                className="bg-white p-3 rounded-[2rem] shadow-sm hover:shadow-md transition-shadow"
+                className="bg-white p-3 rounded-4xl shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="relative aspect-[3/4] bg-gray-100 rounded-[1.5rem] mb-3 overflow-hidden">
+                <div className="relative aspect-3/4 bg-gray-100 rounded-3xl mb-3 overflow-hidden">
                   {item.imageUrl && (
                     <Image
                       src={item.imageUrl}

@@ -1,6 +1,6 @@
-import React from "react";
+"use client";
+
 import Image from "next/image";
-import user from "../../public/Edited/b4f9052e-1648-4e7d-87ec-bb0c978b76f0.jpg";
 import {
   Home,
   ShoppingBag,
@@ -9,19 +9,37 @@ import {
   User,
   ShoppingCart,
 } from "lucide-react";
+import Loader from "../../components/ui/Loader";
+import { useUser } from "@clerk/nextjs";
 
 const SideBar = () => {
+  const { user, isLoaded, isSignedIn } = useUser();
+  if (!isLoaded)
+    return (
+      <div className="p-8 text-gray-400">
+        <Loader />
+      </div>
+    );
+  if (!isSignedIn) return null;
+
   return (
     <div className="flex max-w-400 mx-auto">
       <aside className="hidden md:flex flex-col w-70 h-screen sticky top-0 p-8 border-r border-orange-100 shadow-xl bg-white/50 backdrop-blur-xl">
-        {/* User Profile */}
         <div className="flex items-center gap-3 mb-12">
           <div className="w-10 h-10 rounded-full bg-orange-100 overflow-hidden relative">
-            <Image src={user} alt="User" fill />
+            <Image
+              src={user.imageUrl}
+              alt="User"
+              fill
+              className="object-cover"
+            />
           </div>
+
           <div>
             <p className="text-xs text-gray-400">Welcome</p>
-            <p className="font-bold text-sm">Donnie Dawson</p>
+            <p className="font-bold text-sm">
+              {user.fullName || "Valued Customer"}
+            </p>
           </div>
         </div>
 
@@ -33,9 +51,19 @@ const SideBar = () => {
             active
             className="shadow-xl"
           />
-          <SidebarLink href='/cart' icon={ShoppingCart} label="Cart" className="shadow-xl" />
+          <SidebarLink
+            href="/cart"
+            icon={ShoppingCart}
+            label="Cart"
+            className="shadow-xl"
+          />
           <SidebarLink icon={Filter} label="Categories" className="shadow-xl" />
-          <SidebarLink icon={User} label="Profile" className="shadow-xl" />
+          <SidebarLink
+            href="/profile"
+            icon={User}
+            label="Profile"
+            className="shadow-xl"
+          />
         </nav>
 
         {/* Logout / Bottom */}
