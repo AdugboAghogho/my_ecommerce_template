@@ -1,24 +1,27 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Search, X, Loader2 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 import { client } from "@/lib/sanity";
+import { useRouter } from "next/navigation";
+import { useCartStore } from "@/store/useCartStore";
+import { useState, useEffect } from "react";
+import { Search, X, Loader2, ShoppingCart, ArrowLeft } from "lucide-react";
+import SectionNewsletter from "@/components/landingPage/SectionNewsletter";
 
 export default function SearchPage() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const { addItem } = useCartStore();
+  const router = useRouter();
 
-  // Search Logic with Debounce
+
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (query.length > 2) {
-        // Only search if query is longer than 2 chars
         setIsLoading(true);
         try {
-          // GROQ Query: Matches name OR description
           const products = await client.fetch(
             `*[_type == "product" && (name match "*" + $q + "*" || description match $q + "*")] {
               _id,
@@ -45,6 +48,10 @@ export default function SearchPage() {
 
   return (
     <div className="min-h-screen bg-[#FDFBF7] p-4 md:p-8">
+        <button onClick={() => router.back()} className="w-10 h-10 mb-10 hover:bg-gray-100 scale-108 rounded-full cursor-pointer shadow-xl flex items-center justify-center transition-colors">
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+
       {/* Search Bar */}
       <div className="relative mb-8">
         <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -69,14 +76,12 @@ export default function SearchPage() {
         )}
       </div>
 
-      {/* Loading State */}
       {isLoading && (
         <div className="flex justify-center py-10">
           <Loader2 className="w-8 h-8 text-orange-500 animate-spin" />
         </div>
       )}
 
-      {/* Results */}
       {results.length > 0 ? (
         <>
           <h2 className="font-bold text-gray-900 mb-6">
@@ -85,22 +90,41 @@ export default function SearchPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             {results.map((item) => (
               <Link
-                href={`/shop/product/${item.slug}`}
+                href={`product/${item.slug}`}
                 key={item._id}
                 className="bg-white p-3 rounded-4xl shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="relative aspect-3/4 bg-gray-100 rounded-3xl mb-3 overflow-hidden">
-                  {item.imageUrl && (
-                    <Image
-                      src={item.imageUrl}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                    />
-                  )}
+                <div className="relative aspect-3/4 rounded-2xl overflow-hidden mb-3 bg-gray-100">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
-                <p className="font-bold text-sm truncate">{item.name}</p>
-                <p className="text-orange-500 font-bold">${item.price}</p>
+
+                {/* Details */}
+                <div className="px-1 flex-1 flex flex-col">
+                  <h3 className="font-bold text-gray-900 mb-1 truncate">
+                    {item.name}
+                  </h3>
+
+                  <div className="mt-auto flex items-center justify-between">
+                    <span className="text-lg font-bold text-gray-900">
+                      ${item.price}
+                    </span>
+
+                    <button
+                      className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center text-white shadow-lg shadow-orange-200 hover:scale-110 transition-transform"
+                      onClick={(e) => {
+                        e.preventDefault(); // <--- THIS STOPS THE REDIRECT
+                        addItem(item);
+                      }}
+                    >
+                      <ShoppingCart className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
               </Link>
             ))}
           </div>
@@ -128,6 +152,8 @@ export default function SearchPage() {
           </div>
         </>
       )}
+    <SectionNewsletter />
     </div>
+
   );
 }

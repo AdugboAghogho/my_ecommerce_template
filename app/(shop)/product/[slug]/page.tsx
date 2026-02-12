@@ -1,5 +1,6 @@
-import { singleProduct, relatedProducts } from "@/lib/queries";
 import { client } from "@/lib/sanity";
+import { notFound } from "next/navigation"; // <--- 1. IMPORT THIS
+import { singleProduct, relatedProducts } from "@/lib/queries";
 import ProductDetailsClient from "../../../../components/ProductDetailsClient";
 
 export default async function ProductPage({
@@ -14,11 +15,13 @@ export default async function ProductPage({
     currentId: product._id,
   });
 
-  if (!product) return <div>Product not found</div>;
+  if (!product) {
+    return notFound();
+  }
 
   return (
     <div>
-      <ProductDetailsClient product={product}  relatedProducts={related} />
+      <ProductDetailsClient product={product} relatedProducts={related} />
     </div>
   );
 }

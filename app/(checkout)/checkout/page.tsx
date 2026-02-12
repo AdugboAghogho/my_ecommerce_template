@@ -1,60 +1,62 @@
 "use client";
 
-import { ArrowLeft, CreditCard, Truck, Trash2 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/useCartStore"; // Import the store
+import { ArrowLeft, CreditCard, Truck, Trash2 } from "lucide-react";
+import SectionNewsletter from "@/components/landingPage/SectionNewsletter";
 
 export default function CheckoutPage() {
   const { items, getTotalPrice } = useCartStore();
   const total = getTotalPrice();
   const shipping = 10.0;
   const finalTotal = total + shipping;
+  const router = useRouter();
+
 
   return (
-    <div className="min-h-screen bg-[#FDFBF7] p-4 md:p-8">
+    <div className="min-h-screen bg-[#FDFBF7] p-4 container mx-auto px-4 pb-6">
       <header className="mb-8 flex items-center gap-4">
-        <Link href="/shop/cart">
-          <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm">
+          <button onClick={() => router.back()} className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer shadow-sm">
             <ArrowLeft className="w-5 h-5" />
           </button>
-        </Link>
-        <h1 className="font-bold text-2xl">Checkout</h1>
+        <h1 className="font-bold ml-35 text-2xl">Checkout</h1>
       </header>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Shipping Form */}
         <div className="space-y-6">
-          <section className="bg-white p-6 rounded-[2rem] shadow-sm">
+          <section className="bg-white p-6 rounded-4xl shadow-xl">
             <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
               <Truck className="w-5 h-5 text-orange-500" /> Shipping Address
             </h2>
             <div className="grid grid-cols-2 gap-4">
               <input
                 placeholder="First Name"
-                className="col-span-1 bg-gray-50 border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
+                className="col-span-1 bg-gray-50 shadow-lg border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
               />
               <input
                 placeholder="Last Name"
-                className="col-span-1 bg-gray-50 border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
+                className="col-span-1 bg-gray-50 shadow-lg border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
               />
               <input
                 placeholder="Address"
-                className="col-span-2 bg-gray-50 border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
+                className="col-span-2 bg-gray-50 shadow-lg border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
               />
               <input
                 placeholder="City"
-                className="col-span-1 bg-gray-50 border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
+                className="col-span-1 bg-gray-50 shadow-lg border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
               />
               <input
                 placeholder="Zip Code"
-                className="col-span-1 bg-gray-50 border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
+                className="col-span-1 bg-gray-50 shadow-lg border-none rounded-xl p-3 text-sm focus:ring-2 focus:ring-orange-200 outline-none"
               />
             </div>
           </section>
 
-          <section className="bg-white p-6 rounded-[2rem] shadow-sm">
+          <section className="bg-white p-6 rounded-4xl shadow-xl">
             <h2 className="font-bold text-lg mb-4 flex items-center gap-2">
               <CreditCard className="w-5 h-5 text-orange-500" /> Payment
             </h2>
@@ -71,7 +73,7 @@ export default function CheckoutPage() {
         </div>
 
         {/* Review & Pay */}
-        <div className="bg-white p-6 rounded-[2rem] shadow-sm h-fit">
+        <div className="bg-white p-6 rounded-4xl shadow-xl h-fit">
           <h3 className="font-bold text-gray-900 mb-6">Summary</h3>
 
           <div className="space-y-4 mb-6 max-h-60 overflow-y-auto pr-2">
@@ -119,11 +121,14 @@ export default function CheckoutPage() {
             <span>${finalTotal.toFixed(2)}</span>
           </div>
 
-          <Button className="w-full h-14 bg-black text-white hover:bg-gray-800 rounded-2xl shadow-lg uppercase tracking-widest">
+          <Button className="w-full h-14 bg-black text-white hover:scale-105 rounded-full cursor-pointer shadow-xl uppercase tracking-widest">
             Pay ${finalTotal.toFixed(2)}
           </Button>
         </div>
       </div>
+      <SectionNewsletter />
     </div>
+
+
   );
 }

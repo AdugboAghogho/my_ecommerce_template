@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.className} pb-20 md:pb-0`}>
           <Navbar />
           <Toaster />
           <main className="min-h-screen">{children}</main>

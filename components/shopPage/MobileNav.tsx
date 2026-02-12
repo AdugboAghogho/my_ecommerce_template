@@ -1,26 +1,74 @@
-import { Home, ShoppingBag, Search, User } from "lucide-react";
-import React from "react";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ShoppingBag, Search, User, Home } from "lucide-react";
+import { useCartStore } from "@/store/useCartStore";
 
 const MobileNav = () => {
+  const pathname = usePathname();
+  const { items } = useCartStore();
+
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 bg-black-300 backdrop-blur-xl border-t border-gray-100 p-4 pb-6 flex justify-around z-50 rounded-t-4xl shadow-[0_-10px_40px_rgba(0,0,0,0.05)]">
-      <BottomNavLink icon={Home} label="Home" />
-      <BottomNavLink icon={ShoppingBag} label="Shop" active />
-      <BottomNavLink href="/search" icon={Search} label="Search" />
-      <BottomNavLink href="/profile" icon={User} label="Profile" />
+    <div className="md:hidden fixed bottom-2 w-[90%] left-1/2 transform -translate-x-1/2 z-50">
+      <div className="bg-black/90 backdrop-blur-md text-white px-8 py-4 rounded-full shadow-2xl flex items-center justify-between border border-white/10">
+        <NavIcon href="/shop" icon={Home} isActive={pathname === "/shop"} />
+
+        {/* Cart Icon with Badge */}
+        <Link href="/cart" className="relative group">
+          <div
+            className={`p-2 rounded-full transition-all duration-300 ${pathname === "/cart" ? "text-orange-500" : "text-gray-400 group-hover:text-white"}`}
+          >
+            <ShoppingBag
+              className={`w-6 h-6 ${pathname === "/cart" ? "fill-current" : ""}`}
+            />
+
+            {/* Badge Logic */}
+            {items.length > 0 && (
+              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-white text-[10px] flex items-center justify-center font-bold">
+                {items.length}
+              </span>
+            )}
+          </div>
+        </Link>
+
+         <NavIcon
+          href="/search"
+          icon={Search}
+          isActive={pathname === "/search"}
+        />
+
+        <NavIcon
+          href="/profile"
+          icon={User}
+          isActive={pathname === "/profile"}
+        />
+      </div>
     </div>
   );
 };
-function BottomNavLink({ icon: Icon, label, active, href }: any) {
+
+function NavIcon({
+  href,
+  icon: Icon,
+  isActive,
+}: {
+  href: string;
+  icon: any;
+  isActive: boolean;
+}) {
   return (
-    <button
-      className={`flex flex-col items-center gap-1 ${
-        active ? "text-orange-500" : "text-gray-400"
-      }`}
-    >
-      <Icon className={`w-6 h-6 ${active ? "fill-current" : ""}`} />
-      <span className="text-[10px] font-medium">{label}</span>
-    </button>
+    <Link href={href}>
+      <div
+        className={`p-2 rounded-full transition-all duration-300 ${
+          isActive
+            ? "text-orange-500 scale-110"
+            : "text-gray-400 hover:text-white"
+        }`}
+      >
+        <Icon className={`w-6 h-6 ${isActive ? "fill-current" : ""}`} />
+      </div>
+    </Link>
   );
 }
 

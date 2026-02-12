@@ -58,6 +58,7 @@ const SideBar = () => {
             className="shadow-xl"
           />
           <SidebarLink icon={Filter} label="Categories" className="shadow-xl" />
+          
           <SidebarLink
             href="/profile"
             icon={User}
