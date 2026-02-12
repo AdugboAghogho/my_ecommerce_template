@@ -1,21 +1,28 @@
 "use client";
 
 import Link from "next/link";
-import Hero from '@/components/Hero'
 import Image from "next/image";
-import RelatedProduct from '@/components/RelatedProducts'
+import RelatedProduct from "@/components/RelatedProducts";
 import { toast } from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useCartStore } from "@/store/useCartStore";
 import { useState, useEffect } from "react";
-import { ArrowLeft, ShoppingCart, Heart, Minus, Plus, Star, ArrowRight, ShoppingBag } from "lucide-react";
+import {
+  ArrowLeft,
+  ShoppingCart,
+  Heart,
+  Minus,
+  Plus,
+  Star,
+  ArrowRight,
+  ShoppingBag,
+} from "lucide-react";
 import SectionNewsletter from "@/components/landingPage/SectionNewsletter";
-
 
 export default function ProductPage({
   product,
-  relatedProducts = [], 
+  relatedProducts = [],
 }: {
   product: any;
   relatedProducts?: any[];
@@ -24,16 +31,19 @@ export default function ProductPage({
   const { addItem } = useCartStore();
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || "M");
-  const [selectedColor, setSelectedColor] = useState(product.colors?.[0] || "Black");
+  const [selectedColor, setSelectedColor] = useState(
+    product.colors?.[0] || "Black",
+  );
 
-  const images = (product.images && product.images.length > 0) 
-    ? product.images 
-    : [product.imageUrl];
+  const images =
+    product.images && product.images.length > 0
+      ? product.images
+      : [product.imageUrl];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    if (images.length < 2) return; 
-    
+    if (images.length < 2) return;
+
     const timer = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % images.length);
     }, 5000);
@@ -45,7 +55,7 @@ export default function ProductPage({
       id: product._id,
       name: product.name,
       price: product.price,
-      image: images[0], 
+      image: images[0],
       quantity: quantity,
       size: selectedSize,
       color: selectedColor,
@@ -59,18 +69,20 @@ export default function ProductPage({
     // OR: router.push("/cart");
   };
 
-
   return (
     <div className="min-h-screen bg-white container mx-auto px-4 pb-6">
       {/* --- MOBILE HEADER --- */}
       <div className=" flex justify-between items-center p-4 sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-xl border-b border-gray-100">
-          <button onClick={() => router.back()} className="w-10 h-10 shadow-xl hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-      
+        <button
+          onClick={() => router.back()}
+          className="w-10 h-10 shadow-xl hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+
         <h1 className="font-semibold text-lg tracking-tight">{product.name}</h1>
 
-        <Link href='/cart'>
+        <Link href="/cart">
           <button className="w-10 h-10 cursor-pointer shadow-xl hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
             <ShoppingCart className="w-5 h-5 text-gray-900" />
           </button>
@@ -117,16 +129,18 @@ export default function ProductPage({
           <div className="flex flex-col px-6 md:px-0 pt-2">
             <div className="mb-6 border-b border-gray-100 pb-6">
               <div className="flex justify-between items-start mb-2">
-                 <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
+                <h1 className="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
                   {product.name}
                 </h1>
                 <button className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center hover:bg-gray-100 transition-colors">
                   <Heart className="w-5 h-5 text-gray-900" />
                 </button>
               </div>
-              
+
               <div className="flex items-center gap-4">
-                <p className="text-2xl font-medium text-gray-900">${product.price}</p>
+                <p className="text-2xl font-medium text-gray-900">
+                  ${product.price}
+                </p>
                 <div className="h-4 w-px bg-gray-300"></div>
                 <div className="flex items-center gap-1">
                   <Star className="w-4 h-4 text-orange-400 fill-orange-400" />
@@ -140,7 +154,9 @@ export default function ProductPage({
             <div className="space-y-8 mb-8">
               {/* Colors */}
               <div>
-                <span className="text-sm font-semibold text-gray-900 mb-3 block uppercase tracking-wide">Color</span>
+                <span className="text-sm font-semibold text-gray-900 mb-3 block uppercase tracking-wide">
+                  Color
+                </span>
                 <div className="flex flex-wrap gap-2">
                   {product.colors?.map((color: string) => (
                     <button
@@ -160,7 +176,9 @@ export default function ProductPage({
 
               {/* Sizes */}
               <div>
-                 <span className="text-sm font-semibold text-gray-900 mb-3 block uppercase tracking-wide">Size</span>
+                <span className="text-sm font-semibold text-gray-900 mb-3 block uppercase tracking-wide">
+                  Size
+                </span>
                 <div className="flex flex-wrap gap-2">
                   {["S", "M", "L", "XL"].map((size) => (
                     <button
@@ -178,38 +196,44 @@ export default function ProductPage({
                 </div>
               </div>
             </div>
-            
-             {/* Quantity & Actions */}
-             <div className="flex flex-col gap-4 mt-auto">
-                <div className="flex items-center justify-between bg-gray-50 p-4 rounded-2xl">
-                    <span className="font-semibold text-gray-700">Quantity</span>
-                    <div className="flex items-center gap-6 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100">
-                        <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="hover:text-orange-500 transition-colors">
-                            <Minus className="w-4 h-4" />
-                        </button>
-                        <span className="font-bold w-4 text-center">{quantity}</span>
-                         <button onClick={() => setQuantity(quantity + 1)} className="hover:text-orange-500 transition-colors">
-                            <Plus className="w-4 h-4" />
-                        </button>
-                    </div>
-                </div>
 
-                <div className="grid grid-cols-2 gap-3">
-                  <Button
-                    onClick={handleAddToCart}
-                    className="h-14 cursor-pointer rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 hover:text-black font-semibold text-md"
+            {/* Quantity & Actions */}
+            <div className="flex flex-col gap-4 mt-auto">
+              <div className="flex items-center justify-between bg-gray-50 p-4 rounded-2xl">
+                <span className="font-semibold text-gray-700">Quantity</span>
+                <div className="flex items-center gap-6 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-100">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="hover:text-orange-500 transition-colors"
                   >
-                    Add to Cart
-                  </Button>
-
-                  <Button 
-                    onClick={handleBuyNow} 
-                    className="h-14 cursor-pointer rounded-full bg-[#FA541C] hover:bg-[#E3400D] text-white shadow-lg shadow-orange-100 border-none font-semibold text-md"
-                   >
-                    Buy Now
-                  </Button>
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="font-bold w-4 text-center">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="hover:text-orange-500 transition-colors"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
                 </div>
-             </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                <Button
+                  onClick={handleAddToCart}
+                  className="h-14 cursor-pointer rounded-full border border-gray-200 bg-white text-black hover:bg-gray-50 hover:text-black font-semibold text-md"
+                >
+                  Add to Cart
+                </Button>
+
+                <Button
+                  onClick={handleBuyNow}
+                  className="h-14 cursor-pointer rounded-full bg-[#FA541C] hover:bg-[#E3400D] text-white shadow-lg shadow-orange-100 border-none font-semibold text-md"
+                >
+                  Buy Now
+                </Button>
+              </div>
+            </div>
 
             <div className="mt-8 pt-8 border-t border-gray-100">
               <h3 className="font-bold text-gray-900 mb-2">Description</h3>
@@ -220,10 +244,9 @@ export default function ProductPage({
           </div>
         </div>
 
-        <RelatedProduct  relatedProducts={relatedProducts} />
+        <RelatedProduct relatedProducts={relatedProducts} />
         <SectionNewsletter />
       </div>
-
     </div>
   );
 }
