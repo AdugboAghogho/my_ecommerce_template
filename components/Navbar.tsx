@@ -10,12 +10,13 @@ export function Navbar() {
 
   return (
     // 1. Container: Fixed at top, centered, pill-shaped, dark glass effect
-    <nav className="hidden md:block fixed top-6 left-1/2 -translate-x-1/2 w-[95%] max-w-6xl z-50">
-      <div className="bg-[#0f0f0f]/80 backdrop-blur-md border border-white/10 rounded-full px-8 py-4 shadow-2xl flex items-center justify-between transition-all hover:bg-[#0f0f0f]/90">
+    <nav className="hidden md:block sticky top-3 z-50 mx-auto w-[95%] max-w-6xl mb-4">
+      {" "}
+      <div className="backdrop-blur-md bg-[#0f0f0f]/80 border border-white/10 rounded-full px-8 py-4 flex items-center justify-between transition-all hover:bg-[#0f0f0f]/90">
         {/* --- LEFT: LOGO --- */}
         <Link
           href="/"
-          className="text-2xl font-black tracking-tighter text-white"
+          className="text-2xl font-black tracking-tighter text-zinc-100"
         >
           KELS.<span className="text-zinc-500">WEAR</span>
         </Link>

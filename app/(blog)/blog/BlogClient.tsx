@@ -28,14 +28,14 @@ export default function BlogClient({ posts }: { posts: any[] }) {
 
   // 3. Layout Data
   const featuredPost = filteredPosts[0]; // First matching post
-  const otherPosts = filteredPosts.slice(1); // The rest of the matching posts
+  const otherPosts = filteredPosts.slice(0); // The rest of the matching posts
   const popularPosts = posts.slice(0, 3); // Static "Popular" list (just the newest 3 for now)
 
   // Helper to clear search
   const clearSearch = () => setSearchQuery("");
 
   return (
-    <div className="min-h-screen mt-24 bg-[#FDFBF7]">
+    <div className="min-h-screen mt-27 bg-[#FDFBF7]">
       {/* HEADER SECTION */}
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <header className="pb-8 border-b border-gray-200/60 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
