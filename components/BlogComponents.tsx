@@ -43,7 +43,7 @@ export function BlogCard({
             </div>
           </div>
           <h3
-            className={`${isLarge ? "text-2xl md:text-3xl" : "text-lg"} font-bold text-gray-900 mb-3 leading-tight group-hover:text-orange-500 transition-colors`}
+            className={`${isLarge ? "text-2xl md:text-3xl" : "text-lg"} font-bold text-gray-900 mb-3 leading-tight group-hover: transition-colors`}
           >
             {post.title}
           </h3>

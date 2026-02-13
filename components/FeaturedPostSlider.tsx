@@ -43,7 +43,7 @@ export default function FeaturedPostSlider({ posts }: { posts: any[] }) {
         {posts.map((post) => (
           <SwiperSlide key={post._id} className="h-auto">
             {/* We reuse your existing card, but ensure it takes full height */}
-            <div className="h-full transform transition-transform duration-300">
+            <div className="h-full mb-7 transform transition-transform duration-300">
                <BlogCard post={post} isLarge={false} />
             </div>
           </SwiperSlide>

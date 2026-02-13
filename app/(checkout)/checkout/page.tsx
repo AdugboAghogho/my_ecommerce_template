@@ -24,7 +24,7 @@ export default function CheckoutPage() {
         >
           <ArrowLeft className="w-5 h-5" />
         </button>
-        <h1 className="font-bold ml-23 text-2xl">Checkout</h1>
+        <h1 className="font-bold ml-20 text-2xl">Checkout</h1>
       </header>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">

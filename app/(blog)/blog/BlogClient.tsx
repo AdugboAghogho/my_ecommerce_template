@@ -1,10 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Search, Bell, X } from "lucide-react";
+import { Search, Bell, X, ArrowLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { BlogCard, BlogRowCard } from "@/components/BlogComponents";
 import FeaturedPostSlider from "@/components/FeaturedPostSlider";
+import Link from "next/link";
 
 export default function BlogClient({ posts }: { posts: any[] }) {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -35,10 +36,15 @@ export default function BlogClient({ posts }: { posts: any[] }) {
   const clearSearch = () => setSearchQuery("");
 
   return (
-    <div className="min-h-screen mt-27 bg-[#FDFBF7]">
+    <div className="min-h-screen bg-[#FDFBF7]">
       {/* HEADER SECTION */}
-      <div className="max-w-7xl mx-auto px-4 md:px-8">
+      <div className="max-w-7xl mt-10 mx-auto px-4 md:px-8">
         <header className="pb-8 border-b border-gray-200/60 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+          <Link href="/" className="mt-5 md:hidden">
+            <button className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer shadow-sm">
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          </Link>
           <div>
             <h1 className="text-4xl md:text-6xl font-serif font-bold text-gray-900 mb-3 tracking-tight">
               Our Blog
@@ -87,12 +93,12 @@ export default function BlogClient({ posts }: { posts: any[] }) {
           </div>
 
           {/* Category Pills (Scrollable) */}
-          <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar -mx-4 px-4">
+          <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar shadow-xl -mx-4 px-4">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat as string)}
-                className={`px-6 py-2.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border ${
+                className={`px-6 py-2.5 rounded-full shadow-xl text-sm font-medium whitespace-nowrap transition-all border ${
                   activeCategory === cat
                     ? "bg-black text-white border-black"
                     : "bg-white text-gray-500 border-gray-200"
@@ -106,7 +112,7 @@ export default function BlogClient({ posts }: { posts: any[] }) {
           {/* Mobile Content */}
           {featuredPost ? (
             <div className="space-y-8">
-              <section>
+              <section className="mb-5">
                 <h2 className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">
                   Featured Story
                 </h2>
@@ -197,7 +203,7 @@ export default function BlogClient({ posts }: { posts: any[] }) {
           </div>
 
           {/* Sidebar Area (Right) */}
-          <aside className="col-span-4 space-y-12 pl-4 border-l border-gray-100">
+          <aside className="col-span-4 shadow-xl space-y-12 pl-4 border-l border-gray-100">
             {/* Categories */}
             <section>
               <h3 className="text-lg font-bold mb-6 flex items-center gap-2">

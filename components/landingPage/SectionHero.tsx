@@ -119,7 +119,7 @@ const SectionHero = () => {
                 </div>
 
                 {/* Hero Images Grid */}
-                <div className="relative h-[400px] md:h-[600px] w-full hidden md:block">
+                <div className="relative h-[400px] md:h-[600px] w-full md:block">
                   {/* Main large image */}
                   <div className="absolute right-0 top-0 w-[80%] h-[90%] rounded-3xl overflow-hidden shadow-2xl">
                     <Image
