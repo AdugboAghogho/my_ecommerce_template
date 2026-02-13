@@ -3,13 +3,18 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Instagram, Twitter, Facebook, Youtube, ArrowRight } from "lucide-react";
+import {
+  Instagram,
+  Twitter,
+  Facebook,
+  Youtube,
+  ArrowRight,
+} from "lucide-react";
 
 const SectionNewsletter = () => {
   return (
-    <footer className="container mx-auto px-4 pb-6 mt-24">
+    <footer className="container mx-auto mt-24">
       <div className="bg-[#0f0f0f] rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-zinc-800">
-        
         {/* --- Background Effects --- */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[20%] w-96 h-96 bg-orange-500/10 blur-[120px] rounded-full" />
@@ -17,7 +22,6 @@ const SectionNewsletter = () => {
         </div>
 
         <div className="relative z-10 px-6 py-16 md:p-20">
-          
           {/* --- TOP SECTION: NEWSLETTER --- */}
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 mb-20 border-b border-white/5 pb-16">
             <div className="max-w-xl">
@@ -26,41 +30,43 @@ const SectionNewsletter = () => {
                 <span className="text-zinc-500">Your First Order.</span>
               </h2>
               <p className="text-gray-400 text-lg">
-                Join the KELS.WEAR movement. Be the first to know about new drops, 
-                exclusive sales, and style inspiration.
+                Join the KELS.WEAR movement. Be the first to know about new
+                drops, exclusive sales, and style inspiration.
               </p>
             </div>
 
             <div className="w-full max-w-md flex flex-col sm:flex-row gap-3">
-               <input 
-                 type="email" 
-                 placeholder="Enter your email address" 
-                 className="flex-1 h-14 rounded-full bg-white/5 border border-white/10 px-6 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent transition-all"
-               />
-               <Button className="h-14 rounded-full px-8 bg-white text-black hover:bg-zinc-200 font-bold text-base transition-transform active:scale-95">
-                 Subscribe
-               </Button>
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                className="h-14 rounded-full bg-white/5 border border-white/10 px-8 text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-orange-500/50 focus:border-transparent transition-all"
+              />
+              <Button className="h-14 rounded-full px-8 bg-white text-black hover:bg-zinc-200 font-bold text-base transition-transform active:scale-95">
+                Subscribe
+              </Button>
             </div>
           </div>
 
           {/* --- MIDDLE SECTION: LINKS GRID --- */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mb-16">
-            
             {/* Brand Column */}
             <div className="col-span-2 md:col-span-1 flex flex-col items-start">
-               <Link href="/" className="text-2xl font-bold text-white mb-6 tracking-tighter">
-                 KELS.<span className="text-zinc-600">WEAR</span>
-               </Link>
-               <p className="text-zinc-500 text-sm mb-6 max-w-xs">
-                 Redefining modern streetwear with comfort and sustainability in mind. 
-                 Designed in Lagos, worn worldwide.
-               </p>
-               <div className="flex gap-3">
-                 <SocialIcon icon={Instagram} />
-                 <SocialIcon icon={Twitter} />
-                 <SocialIcon icon={Facebook} />
-                 <SocialIcon icon={Youtube} />
-               </div>
+              <Link
+                href="/"
+                className="text-2xl font-bold text-white mb-6 tracking-tighter"
+              >
+                KELS.<span className="text-zinc-600">WEAR</span>
+              </Link>
+              <p className="text-zinc-500 text-sm mb-6 max-w-xs">
+                Redefining modern streetwear with comfort and sustainability in
+                mind. Designed in Lagos, worn worldwide.
+              </p>
+              <div className="flex gap-3">
+                <SocialIcon icon={Instagram} />
+                <SocialIcon icon={Twitter} />
+                <SocialIcon icon={Facebook} />
+                <SocialIcon icon={Youtube} />
+              </div>
             </div>
 
             {/* Shop Links */}
@@ -70,7 +76,9 @@ const SectionNewsletter = () => {
               <FooterLink href="/shop">Men's Collection</FooterLink>
               <FooterLink href="/shop">Women's Collection</FooterLink>
               <FooterLink href="/shop">Accessories</FooterLink>
-              <FooterLink href="/shop" className="text-orange-500">Sale Archive</FooterLink>
+              <FooterLink href="/shop" className="text-orange-500">
+                Sale Archive
+              </FooterLink>
             </div>
 
             {/* Support Links */}
@@ -83,8 +91,8 @@ const SectionNewsletter = () => {
               <FooterLink href="/track">Track Order</FooterLink>
             </div>
 
-             {/* Company Links */}
-             <div className="flex flex-col gap-4">
+            {/* Company Links */}
+            <div className="flex flex-col gap-4">
               <h4 className="text-white font-bold text-lg mb-2">Company</h4>
               <FooterLink href="/">Our Story</FooterLink>
               <FooterLink href="/">Sustainability</FooterLink>
@@ -92,18 +100,16 @@ const SectionNewsletter = () => {
               <FooterLink href="/">Terms & Conditions</FooterLink>
               <FooterLink href="/">Privacy Policy</FooterLink>
             </div>
-
           </div>
 
           {/* --- BOTTOM SECTION: COPYRIGHT --- */}
           <div className="flex flex-col md:flex-row justify-between items-center text-zinc-600 text-sm border-t border-white/5 pt-8">
             <p>© 2026 Kels Development. All rights reserved.</p>
             <div className="flex items-center gap-2 mt-4 md:mt-0">
-               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-               <span>All systems operational</span>
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+              <span>All systems operational</span>
             </div>
           </div>
-
         </div>
       </div>
     </footer>
@@ -114,8 +120,8 @@ const SectionNewsletter = () => {
 
 function FooterLink({ href, children, className = "" }: any) {
   return (
-    <Link 
-      href={href} 
+    <Link
+      href={href}
       className={`text-zinc-400 hover:text-white transition-colors text-sm flex items-center gap-1 group ${className}`}
     >
       {children}
@@ -126,8 +132,8 @@ function FooterLink({ href, children, className = "" }: any) {
 
 function SocialIcon({ icon: Icon }: any) {
   return (
-    <a 
-      href="#" 
+    <a
+      href="#"
       className="w-10 h-10 rounded-full bg-white/5 border border-white/5 flex items-center justify-center text-zinc-400 hover:bg-white hover:text-black hover:scale-110 transition-all duration-300"
     >
       <Icon className="w-5 h-5" />

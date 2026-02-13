@@ -15,14 +15,16 @@ export default function CheckoutPage() {
   const finalTotal = total + shipping;
   const router = useRouter();
 
-
   return (
     <div className="min-h-screen bg-[#FDFBF7] p-4 container mx-auto px-4 pb-6">
-      <header className="mb-8 flex items-center gap-4">
-          <button onClick={() => router.back()} className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer shadow-sm">
-            <ArrowLeft className="w-5 h-5" />
-          </button>
-        <h1 className="font-bold ml-35 text-2xl">Checkout</h1>
+      <header className="mb-8 mt-5 flex items-center gap-4">
+        <button
+          onClick={() => router.back()}
+          className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer shadow-sm"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <h1 className="font-bold ml-23 text-2xl">Checkout</h1>
       </header>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -128,7 +130,5 @@ export default function CheckoutPage() {
       </div>
       <SectionNewsletter />
     </div>
-
-
   );
 }

@@ -46,3 +46,28 @@ export const relatedProducts = groq`*[_type == "product" && category->title == $
   "imageUrl": images[0].asset->url,
   "slug": slug.current
 }`;
+
+export const allBlogs = groq`*[_type == "blog"] | order(publishedAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  "image": image.asset->url,
+  category,
+  author,
+  "authorImage": authorImage.asset->url,
+  publishedAt,
+  "excerpt": array::join(string::split((pt::text(content)), "")[0..100], "") + "..."
+}`;
+
+// UPDATED: Checks for either "blog" OR "post" type
+export const singleBlog = groq`*[(_type == "blog" || _type == "post") && slug.current == $slug][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  "image": image.asset->url,
+  category,
+  author,
+  "authorImage": authorImage.asset->url,
+  publishedAt,
+  content
+}`;

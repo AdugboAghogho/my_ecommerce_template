@@ -65,8 +65,8 @@ export default function ProductPage({
 
   const handleBuyNow = () => {
     handleAddToCart();
-    router.push("/checkout");
-    // OR: router.push("/cart");
+    // router.push("/checkout");
+    OR: router.push("/cart");
   };
 
   return (

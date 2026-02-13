@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingBag, Search, User, Home } from "lucide-react";
+import { ShoppingCart, Search, User, Home } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
 const MobileNav = () => {
@@ -19,20 +19,20 @@ const MobileNav = () => {
           <div
             className={`p-2 rounded-full transition-all duration-300 ${pathname === "/cart" ? "text-orange-500" : "text-gray-400 group-hover:text-white"}`}
           >
-            <ShoppingBag
+            <ShoppingCart
               className={`w-6 h-6 ${pathname === "/cart" ? "fill-current" : ""}`}
             />
 
             {/* Badge Logic */}
             {items.length > 0 && (
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-white text-[10px] flex items-center justify-center font-bold">
+              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-white text-[15px] flex items-center justify-center font-bold">
                 {items.length}
               </span>
             )}
           </div>
         </Link>
 
-         <NavIcon
+        <NavIcon
           href="/search"
           icon={Search}
           isActive={pathname === "/search"}
