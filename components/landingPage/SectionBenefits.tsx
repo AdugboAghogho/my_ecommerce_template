@@ -61,7 +61,7 @@ export function SectionBenefits() {
 
       {/* Row 1: Moving Left */}
       {/* UPDATED: Added [animation-duration:20s] for faster speed on mobile, slower on desktop */}
-      <div className="flex w-[200%] animate-marquee-left hover:[animation-play-state:paused] [animation-duration:40s] md:[animation-duration:20s]">
+      <div className="flex w-[200%] animate-marquee-left [animation-duration: 30s] md:[animation-duration:40s]">
         {[...BENEFITS_ROW_1, ...BENEFITS_ROW_1, ...BENEFITS_ROW_1].map(
           (item, i) => (
             <BenefitCard key={i} {...item} />
@@ -72,7 +72,7 @@ export function SectionBenefits() {
       <div className="h-6 md:h-8" />
 
       {/* Row 2: Moving Right */}
-      <div className="flex w-[200%] animate-marquee-right hover:[animation-play-state:paused] [animation-duration:20s] md:[animation-duration:10s]">
+      <div className="flex w-[200%] animate-marquee-right [animation-duration: 30s] md:[animation-duration:40s]">
         {[...BENEFITS_ROW_2, ...BENEFITS_ROW_2, ...BENEFITS_ROW_2].map(
           (item, i) => (
             <BenefitCard key={i} {...item} />

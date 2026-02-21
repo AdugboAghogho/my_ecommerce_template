@@ -1,5 +1,5 @@
 "use client";
-import "swiper/css"; 
+import "swiper/css";
 
 import Link from "next/link";
 import React from "react";
@@ -8,8 +8,6 @@ import { useCartStore } from "@/store/useCartStore";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { ArrowRight, ShoppingBag, Heart } from "lucide-react";
 import SectionNewsletter from "@/components/landingPage/SectionNewsletter";
-
-
 
 export default function RelatedProducts({
   relatedProducts = [],
@@ -22,7 +20,9 @@ export default function RelatedProducts({
   return (
     <div className="container mt-24 mb-24">
       <div className="flex justify-between items-end mb-8 px-4 md:px-0">
-        <h2 className="text-2xl font-bold text-gray-900">You might also like</h2>
+        <h2 className="text-2xl font-bold text-gray-900">
+          You might also like
+        </h2>
         <Link
           href="/shop"
           className="text-sm font-semibold text-gray-900 hover:text-orange-500 flex items-center gap-1 transition-colors"
@@ -50,7 +50,7 @@ export default function RelatedProducts({
           >
             {relatedProducts.map((item) => (
               <SwiperSlide key={item._id} className="h-auto">
-                <div className="group relative bg-white border border-gray-100 rounded-3xl p-3 shadow-xl hover:shadow-lg transition-all duration-300 h-full flex flex-col">
+                <div className="group relative bg-white border border-gray-100 rounded-2xl p-3 shadow-xl hover:shadow-lg transition-all duration-300 h-full flex flex-col">
                   <div className="relative aspect-[3/4] bg-gray-50 rounded-2xl overflow-hidden mb-3">
                     <Link href={`/product/${item.slug}`}>
                       {item.imageUrl && (
@@ -71,25 +71,25 @@ export default function RelatedProducts({
                         {item.name}
                       </h3>
                     </Link>
-                    
+
                     <div className="flex items-center justify-between mt-auto">
                       <p className="font-bold text-gray-900 text-lg">
                         ${item.price}
                       </p>
-                      
+
                       {/* Add to Cart Button */}
-                      <button 
+                      <button
                         onClick={(e) => {
-                           e.preventDefault(); // Stop Link click
-                           addItem({
-                             id: item._id,
-                             name: item.name,
-                             price: item.price,
-                             image: item.imageUrl,
-                             quantity: 1,
-                             size: "M", // Default
-                             color: "Default"
-                           });
+                          e.preventDefault(); // Stop Link click
+                          addItem({
+                            id: item._id,
+                            name: item.name,
+                            price: item.price,
+                            image: item.imageUrl,
+                            quantity: 1,
+                            size: "M", // Default
+                            color: "Default",
+                          });
                         }}
                         className="w-10 h-10 bg-black text-white rounded-full flex items-center justify-center hover:bg-orange-500 transition-colors shadow-lg active:scale-90"
                       >
@@ -97,7 +97,6 @@ export default function RelatedProducts({
                       </button>
                     </div>
                   </div>
-
                 </div>
               </SwiperSlide>
             ))}

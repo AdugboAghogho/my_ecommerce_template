@@ -14,7 +14,7 @@ import {
 const SectionNewsletter = () => {
   return (
     <footer className="container mx-auto mt-24">
-      <div className="bg-[#0f0f0f] rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-zinc-800">
+      <div className="bg-[#0f0f0f] rounded-[2rem] overflow-hidden relative shadow-2xl border border-zinc-800">
         {/* --- Background Effects --- */}
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
           <div className="absolute top-[-10%] left-[20%] w-96 h-96 bg-orange-500/10 blur-[120px] rounded-full" />

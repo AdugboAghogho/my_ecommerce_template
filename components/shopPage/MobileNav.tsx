@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ShoppingCart, Search, User, Home } from "lucide-react";
+import { ShoppingCart, ShoppingBag, Search, User, Home } from "lucide-react";
 import { useCartStore } from "@/store/useCartStore";
 
 const MobileNav = () => {
@@ -12,7 +12,13 @@ const MobileNav = () => {
   return (
     <div className="md:hidden fixed bottom-2 w-[90%] left-1/2 transform -translate-x-1/2 z-50">
       <div className="bg-black/90 backdrop-blur-md text-white px-8 py-4 rounded-full shadow-2xl flex items-center justify-between border border-white/10">
-        <NavIcon href="/shop" icon={Home} isActive={pathname === "/shop"} />
+        <NavIcon href="/" icon={Home} isActive={pathname === "/"} />
+
+        <NavIcon
+          href="/shop"
+          icon={ShoppingBag}
+          isActive={pathname === "/shop"}
+        />
 
         {/* Cart Icon with Badge */}
         <Link href="/cart" className="relative group">
@@ -66,7 +72,7 @@ function NavIcon({
             : "text-gray-400 hover:text-white"
         }`}
       >
-        <Icon className={`w-6 h-6 ${isActive ? "fill-current" : ""}`} />
+        <Icon className={`w-6 h-6 ${isActive ? "fill" : ""}`} />
       </div>
     </Link>
   );

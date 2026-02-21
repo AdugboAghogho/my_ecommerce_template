@@ -27,6 +27,7 @@ export default function ProductPage({
   product: any;
   relatedProducts?: any[];
 }) {
+  const { items } = useCartStore();
   const router = useRouter();
   const { addItem } = useCartStore();
   const [quantity, setQuantity] = useState(1);
@@ -72,7 +73,7 @@ export default function ProductPage({
   return (
     <div className="min-h-screen bg-white container mx-auto px-4 pb-6">
       {/* --- MOBILE HEADER --- */}
-      <div className=" flex justify-between items-center p-4 sticky top-0 z-20 bg-white/80 backdrop-blur-md shadow-xl border-b border-gray-100">
+      <div className=" flex justify-between items-center p-4 sticky top-0 z-20 bg-white/80 backdrop-blur-md border-b border-gray-100">
         <button
           onClick={() => router.back()}
           className="w-10 h-10 shadow-xl hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
@@ -82,10 +83,17 @@ export default function ProductPage({
 
         <h1 className="font-semibold text-lg tracking-tight">{product.name}</h1>
 
-        <Link href="/cart">
-          <button className="w-10 h-10 cursor-pointer shadow-xl hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors">
-            <ShoppingCart className="w-5 h-5 text-gray-900" />
-          </button>
+        <Link href="/cart" className="relative group shadow-xl rounded-full">
+          <div className="p-2 transition-all duration-300">
+            <ShoppingCart className="w-6 h-6" />
+
+            {/* Badge Logic */}
+            {items.length > 0 && (
+              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full text-black text-[17px] flex items-center justify-center font-bold">
+                {items.length}
+              </span>
+            )}
+          </div>
         </Link>
       </div>
 

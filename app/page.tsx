@@ -11,8 +11,13 @@ import { SectionBenefits } from "@/components/landingPage/SectionBenefits";
 import { SectionBrandStory } from "@/components/landingPage/SectionBrandStory";
 import { SectionBrands } from "@/components/landingPage/SectionBrands";
 import { SectionFAQ } from "@/components/landingPage/SectionFAQ";
+import LatestStories from "@/components/landingPage/LatestStories";
+import { client } from "@/lib/sanity";
+import { allBlogs } from "@/lib/queries";
 
-export default function Home() {
+export default async function Home() {
+  const posts = await client.fetch(allBlogs);
+
   return (
     <div className="flex flex-col gap-20 pb-20">
       {/* 1. HERO SECTION */}
@@ -143,6 +148,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <LatestStories posts={posts} />
 
       {/* 6. BENEFITS MARQUEE (New Section) */}
       <SectionBenefits />

@@ -38,10 +38,10 @@ export default function BlogClient({ posts }: { posts: any[] }) {
   return (
     <div className="min-h-screen bg-[#FDFBF7]">
       {/* HEADER SECTION */}
-      <div className="max-w-7xl mt-10 mx-auto px-4 md:px-8">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 sm:mt-10">
         <header className="pb-8 border-b border-gray-200/60 mb-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <Link href="/" className="mt-5 md:hidden">
-            <button className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer shadow-sm">
+            <button className="w-10 h-10 shadow-xl bg-white rounded-full flex items-center justify-center cursor-pointer">
               <ArrowLeft className="w-5 h-5" />
             </button>
           </Link>
@@ -86,19 +86,19 @@ export default function BlogClient({ posts }: { posts: any[] }) {
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
             <Input
               placeholder="Search for articles..."
-              className="pl-12 h-12 rounded-2xl bg-white border-gray-200 shadow-sm text-base"
+              className="pl-12 h-12 rounded-2xl bg-white border-gray-200 shadow-xl text-base"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
           {/* Category Pills (Scrollable) */}
-          <div className="flex gap-3 overflow-x-auto pb-2 no-scrollbar shadow-xl -mx-4 px-4">
+          <div className="flex gap-3 shadow-xl overflow-x-auto pb-2 no-scrollbar -mx-4 px-4">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat as string)}
-                className={`px-6 py-2.5 rounded-full shadow-xl text-sm font-medium whitespace-nowrap transition-all border ${
+                className={`px-6 py-2.5 mb-7 rounded-full shadow-xl text-sm font-medium whitespace-nowrap transition-all border ${
                   activeCategory === cat
                     ? "bg-black text-white border-black"
                     : "bg-white text-gray-500 border-gray-200"
@@ -237,7 +237,7 @@ export default function BlogClient({ posts }: { posts: any[] }) {
             </section>
 
             {/* Sticky Ad Banner */}
-            <div className="sticky top-24 w-full aspect-[3/4] bg-[#111] rounded-[1.5rem] flex flex-col items-center justify-center text-white p-8 text-center overflow-hidden relative group cursor-pointer">
+            <div className="sticky top-24 w-full aspect-3/4 bg-[#111] rounded-3xl flex flex-col items-center justify-center text-white p-8 text-center overflow-hidden relative group cursor-pointer">
               <div className="relative z-10">
                 <p className="text-xs font-bold text-gray-400 mb-2 uppercase tracking-widest">
                   New Collection

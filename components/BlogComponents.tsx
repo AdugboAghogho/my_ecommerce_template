@@ -13,7 +13,7 @@ export function BlogCard({
   return (
     <Link href={`/blog/${post.slug}`} className="group block h-full">
       <div
-        className={`bg-white shadow-xl rounded-[2rem] overflow-hidden shadow-sm hover: transition-all h-full flex flex-col ${isLarge ? "md:flex-row md:gap-8 md:p-0 md:bg-transparent md:shadow-none" : "border border-gray-100"}`}
+        className={`bg-white shadow-xl rounded-4xl overflow-hidden  hover: transition-all h-full flex flex-col ${isLarge ? "md:flex-row md:gap-8 md:p-0 md:bg-transparent md:shadow-none" : "border border-gray-100"}`}
       >
         {/* Image Container */}
         <div

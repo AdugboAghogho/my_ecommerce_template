@@ -13,7 +13,6 @@ export function Navbar() {
     <nav className="hidden md:block sticky top-3 z-50 mx-auto w-[95%] max-w-6xl mb-4">
       {" "}
       <div className="backdrop-blur-md bg-[#0f0f0f]/90 border border-white/10 rounded-full px-8 py-4 flex items-center justify-between transition-all hover:bg-[#0f0f0f]/80">
-        {/* --- LEFT: LOGO --- */}
         <Link
           href="/"
           className="text-2xl font-black tracking-tighter text-zinc-100"
